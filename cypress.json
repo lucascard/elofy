@@ -1,0 +1,8 @@
+{
+    "baseUrl": "https://app-dev.elofy.com.br/",
+    "chromeWebSecurity": false,
+    "experimentalSessionSupport": true,
+    "viewportWidth": 1680,
+    "viewportHeight": 1050
+  }
+  
