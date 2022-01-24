@@ -4,9 +4,9 @@ describe('Tela de login', () => {
     });
 
     it('Login com sucesso', () => {
-        cy.get('#username').type(Cypress.env('emailLogin'))
+        cy.get('#username').type(Cypress.env('emailAppDev'))
         cy.wait(200)
-        cy.get('#password').type(Cypress.env('passwordLogin'))
+        cy.get('#password').type(Cypress.env('passwordAppdev'))
 
         cy.server()
         cy.route('POST', '**/logar').as('postLogar')
@@ -16,9 +16,6 @@ describe('Tela de login', () => {
             expect(xhr.status).be.eq(200)
             expect(xhr.response.body.login_status).be.eq("success")
         })
-
-        cy.contains('Você possui acesso à múltiplas empresas')
-            .should('be.visible')
     });
 
     it('Login com senha errada', () => {
@@ -55,7 +52,7 @@ describe('Tela de login', () => {
 
         cy.get('#form-recuperar > .voltar_email_screen > .material-icons').click() //botao Voltar para login
 
-        cy.contains('Iniciar sessão')   
+        cy.contains('Iniciar sessão')
             .should('be.visible')
     });
 

@@ -1,8 +1,13 @@
 {
-    "baseUrl": "https://app-dev.elofy.com.br/",
-    "chromeWebSecurity": false,
-    "experimentalSessionSupport": true,
-    "viewportWidth": 1680,
-    "viewportHeight": 1050
-  }
-  
+  "env": {
+    "MAILSLURP_API_KEY": "cb7571b46bcb99b2c2ef242b4e72d1e4ea87759dd360157779605e382e2545bf"
+  },
+  "baseUrl": "https://app-dev.elofy.com.br/",
+  "chromeWebSecurity": false,
+  "experimentalSessionSupport": true,
+  "viewportWidth": 1680,
+  "viewportHeight": 1050,
+  "defaultCommandTimeout": 30000,
+  "responseTimeout": 30000,
+  "requestTimeout": 30000
+}

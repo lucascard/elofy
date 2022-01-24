@@ -20,6 +20,7 @@ describe('Questionários', () => {
         cy.visit('/')    
         
         cy.get(`[ng-if="$ctrl.canISee('questionarios')"]`).click({force: true})
+        cy.get('.add-key-btn > .mdc-button').click()
 
         cy.url()
             .should('include', '/questionarios')
