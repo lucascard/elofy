@@ -5,4 +5,4 @@ workflows:
   build:
     jobs:
       - cypress/run:
-          git yarn: true
+          yarn: true

@@ -2,22 +2,7 @@
 /// <reference types="cypress-mailslurp" />
 
 describe('app-dev', function () {
-    beforeEach(function () {
-        cy.session('login', () => {
-            cy.visit('/')
-            cy.get('#username').type(Cypress.env('emailAppDev'))
-            cy.wait(200)
-            cy.get('#password').type(Cypress.env('passwordAppdev'))
-            cy.get('#form_login > :nth-child(4) > .login-form-btn').click()
-
-            cy.contains('Liga da Justiça')
-                .siblings()
-                .find('[class="access_btn"]').click()
-
-            cy.url()
-                .should('include', '/eloapp#!/perfil')
-        })
-
+    before(function () {
         return cy.mailslurp()
             .then(mailslurp => mailslurp.createInbox())
             .then(inbox => {
@@ -25,9 +10,14 @@ describe('app-dev', function () {
                 cy.wrap(inbox.id).as('inboxId')
                 cy.wrap(inbox.emailAddress).as('emailAddress')
             })
+        
     });
+    
+    beforeEach(() => {
+        cy.loginAppDev()
+    })
 
-    it('Mensagens de erro', () => {
+    it.only('Mensagens de erro', () => {
         cy.visit('/')
 
         cy.get(`[ng-if="$ctrl.canISee('usuarios')"]`).click({ force: true }) //entrando em usuarios
@@ -71,10 +61,12 @@ describe('app-dev', function () {
         cy.get('.error-msg')
             .should('contain.text', 'Campo obrigatório')    //verificando a mensagem de campo obrigatório em "Selecione um usuário"  
 
-        cy.get('.model_bod > .modalBotoes')
+            
+
+        /* cy.get('.model_bod > .modalBotoes')
             .contains('Cancelar').click() //clicando no botão cancelar
 
-        cy.get('[ng-click="resetFilter()"]').click() //clicando no botão limpar    
+        cy.get('[ng-click="resetFilter()"]').click() //clicando no botão limpar     */
     });
 
     it('Desligamento Involuntário direto pelo elofy && Exclusão do desligamento', () => {
